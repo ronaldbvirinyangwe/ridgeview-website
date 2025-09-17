@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import ContactForm from '@/components/ContactForm';
 import './page.css';
 
-export default function ContactPage(): JSX.Element {
+export default function ContactPage() {
   return (
     <div className="page-container contact-page">
       <Header />
