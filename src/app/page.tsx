@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './page.css';
 
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <div className="page-container">
       <Header />

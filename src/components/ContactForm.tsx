@@ -10,7 +10,7 @@ type FormState = {
   message: string;
 };
 
-export default function ContactForm(): JSX.Element {
+export default function ContactForm() {
   const [form, setForm] = useState<FormState>({
     name: '',
     email: '',

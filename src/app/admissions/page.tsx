@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import AdmissionsForm from '@/components/AdmissionsForm';
 import './page.css';
 
-export default function AdmissionsPage(): JSX.Element {
+export default function AdmissionsPage() {
   return (
     <div className="page-container">
       <Header />

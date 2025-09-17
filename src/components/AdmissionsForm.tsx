@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 type Status = 'idle' | 'sending' | 'ok' | 'error';
 
-export default function AdmissionsForm(): JSX.Element {
+export default function AdmissionsForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [grade, setGrade] = useState('Form 1');

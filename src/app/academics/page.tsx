@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './page.css';
 
-export default function Academics(): JSX.Element {
+export default function Academics() {
   return (
     <div className="page-container academics-page">
       <Header />
