@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import './page.css';
 
-export default function About(): JSX.Element {
+export default function About() {
   return (
     <div className="page-container about-page">
       <Header />
