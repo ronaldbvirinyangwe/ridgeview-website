@@ -1,0 +1,217 @@
+:root {
+  --content-pad: 24px;
+}
+
+/* Page scaffold */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.main-content {
+  flex: 1;
+  padding: 28px 0 80px;
+}
+
+/* container */
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+/* Hero / intro */
+.admissions-hero {
+  margin: 6px 0 24px;
+}
+.admissions-hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 3.6vw, 32px);
+  font-weight: 700;
+  color: var(--text);
+}
+.admissions-hero p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 68ch;
+  line-height: 1.6;
+}
+
+/* Grid: two columns (info + form) */
+.admissions-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+  margin-top: 26px;
+}
+
+/* Left column copy */
+.admissions-info {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.admissions-info p { margin: 0 0 12px; }
+.admissions-list {
+  margin: 12px 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+.admissions-list li { margin-bottom: 8px; }
+
+/* Actions row */
+.admissions-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.admissions-actions .btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+/* Form card (right column) */
+.admissions-form {
+  background: var(--card);
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Labels & grouped rows */
+.admissions-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Inputs, selects, textarea */
+.admissions-form input,
+.admissions-form select,
+.admissions-form textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+  font-size: 14px;
+  resize: vertical;
+  transition: box-shadow 140ms ease, border-color 140ms ease, transform 80ms ease;
+}
+
+/* Placeholder color tuned for both themes */
+.admissions-form input::placeholder,
+.admissions-form textarea::placeholder {
+  color: rgba(255,255,255,0.18);
+}
+
+/* Focus state (accessible) */
+.admissions-form input:focus,
+.admissions-form select:focus,
+.admissions-form textarea:focus {
+  outline: none;
+  box-shadow: 0 6px 20px rgba(79,167,255,0.06);
+  border-color: rgba(79,167,255,0.18);
+}
+
+/* Submit full width button */
+.admissions-form .btn {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Disabled state for button */
+.admissions-form .btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  filter: grayscale(0.08);
+}
+
+/* success / error messages */
+.admissions-form .status {
+  min-height: 26px;
+  font-size: 13px;
+}
+.status.ok { color: #9cf5b6; }
+.status.error { color: #ff9b9b; }
+
+/* inline field row (2 cols) */
+.form-row { display: flex; gap: 12px; }
+.form-row .half { flex: 1; }
+
+/* contact block below form */
+.admissions-contact {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.admissions-contact strong { color: var(--text); }
+
+/* subtle input validation styling utilities */
+/* add .is-invalid to input element when invalid on client */
+.admissions-form input.is-invalid,
+.admissions-form textarea.is-invalid,
+.admissions-form select.is-invalid {
+  border-color: rgba(255,155,155,0.9);
+  box-shadow: 0 6px 18px rgba(255,155,155,0.06);
+}
+
+/* micro-interactions */
+.admissions-actions .btn:hover { transform: translateY(-2px); transition: transform .12s ease; }
+.admissions-form .btn:hover:not([disabled]) { transform: translateY(-2px); }
+
+/* footer spacing */
+.admissions-form .small-note { color: var(--muted); font-size: 13px; }
+
+/* --------------------------
+   Accessibility focus outline
+   -------------------------- */
+.admissions-form input:focus-visible,
+.admissions-form select:focus-visible,
+.admissions-form textarea:focus-visible,
+.admissions-actions .btn:focus-visible {
+  outline: 3px solid rgba(79,167,255,0.14);
+  outline-offset: 2px;
+  border-color: rgba(79,167,255,0.22);
+}
+
+/* --------------------------
+   Responsiveness
+   -------------------------- */
+@media (max-width: 1000px) {
+  .admissions-grid { grid-template-columns: 1fr 320px; }
+}
+
+@media (max-width: 820px) {
+  .admissions-grid { grid-template-columns: 1fr; }
+  .admissions-actions { justify-content: flex-start; }
+  .admissions-form { width: 100%; }
+  .form-row { flex-direction: column; }
+}
+
+/* --------------------------
+   Light-mode tweaks (fallback if no global override)
+   -------------------------- */
+@media (prefers-color-scheme: light) {
+  :root {
+    --card: #ffffff;
+    --muted: #46515a;
+    --text: #0b1220;
+    --shadow-md: 0 8px 24px rgba(16,24,40,0.06);
+  }
+}

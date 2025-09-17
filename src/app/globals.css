@@ -1,42 +1,205 @@
+/* src/app/globals.css
+   Theme-aware global styles (light-first) with data-theme override
+*/
+
+/* -------------------------
+   Base variables (light default)
+   ------------------------- */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --muted: #6b7280;            /* subtle text / meta */
+  --accent: #0f6cff;           /* primary accent (links, CTAs) */
+  --accent-2: #7b61ff;         /* secondary accent for gradients */
+  --header-bg: rgba(255,255,255,0.9);
+  --header-border: #e7e7e7;
+  --card-bg: #ffffff;
+  --card-border: rgba(16,24,40,0.04);
+  --shadow-md: 0 10px 30px rgba(16,24,40,0.06);
+
+  --container-w: 1100px;
+  --radius: 10px;
+
+  --transition-fast: 170ms;
 }
 
+/* -------------------------
+   Dark-mode defaults (system preference)
+   ------------------------- */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --muted: #9aa6b2;
+    --accent: #4fa7ff;
+    --accent-2: #9b6bff;
+    --header-bg: rgba(7,8,10,0.6);
+    --header-border: rgba(255,255,255,0.03);
+    --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    --card-border: rgba(255,255,255,0.03);
+    --shadow-md: 0 10px 30px rgba(2,6,12,0.6);
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* -------------------------
+   Explicit theme override via html[data-theme="light"|"dark"]
+   (Header toggle should set document.documentElement.dataset.theme)
+   ------------------------- */
+html[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #6b7280;
+  --accent: #0f6cff;
+  --accent-2: #7b61ff;
+  --header-bg: rgba(255,255,255,0.98);
+  --header-border: #e7e7e7;
+  --card-bg: #ffffff;
+  --card-border: rgba(16,24,40,0.04);
+  --shadow-md: 0 10px 30px rgba(16,24,40,0.06);
+  color-scheme: light;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted: #9aa6b2;
+  --accent: #4fa7ff;
+  --accent-2: #9b6bff;
+  --header-bg: rgba(7,8,10,0.6);
+  --header-border: rgba(255,255,255,0.03);
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  --card-border: rgba(255,255,255,0.03);
+  --shadow-md: 0 10px 30px rgba(2,6,12,0.6);
+  color-scheme: dark;
+}
+
+/* If no explicit data-theme is set, allow the browser to choose color-scheme */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) { color-scheme: dark; }
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) { color-scheme: light; }
+}
+
+/* -------------------------
+   Base resets & layout
+   ------------------------- */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-a {
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  transition: background var(--transition-fast) ease, color var(--transition-fast) ease;
+}
+
+/* Container helper */
+.container {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Links */
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* -------------------------
+   Buttons & controls
+   ------------------------- */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: transparent;
   color: inherit;
-  text-decoration: none;
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+.btn:active { transform: translateY(1px); }
+.btn:focus { outline: 3px solid rgba(79,167,255,0.12); outline-offset: 3px; }
+
+/* Primary CTA */
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  box-shadow: var(--shadow-md);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Ghost/outline button */
+.btn-ghost {
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--foreground);
+}
+
+/* Form inputs */
+input, select, textarea {
+  font: inherit;
+  color: var(--foreground);
+  background: transparent;
+  border: 1px solid var(--card-border);
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+input::placeholder, textarea::placeholder { color: rgba(0,0,0,0.35); }
+
+/* Focus-visible outlines */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 3px solid rgba(79,167,255,0.14);
+  outline-offset: 3px;
+}
+
+/* -------------------------
+   Cards, surfaces, utilities
+   ------------------------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 16px;
+}
+
+/* muted text */
+.muted { color: var(--muted); }
+
+/* small helper */
+.lede { color: var(--muted); max-width: 70ch; }
+
+/* -------------------------
+   Accessibility & reduced motion
+   ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition-fast: 0ms; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* -------------------------
+   Small responsive helpers
+   ------------------------- */
+@media (max-width: 520px) {
+  .container { padding: 0 14px; }
 }

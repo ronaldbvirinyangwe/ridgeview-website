@@ -1,0 +1,59 @@
+
+/* scaffold */
+.page-container { background: var(--bg); color: var(--text); }
+.main-content { padding: 28px 0 64px; }
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 20px; }
+
+/* hero */
+.hero-brief { padding: 28px 0; }
+.hero-inner { display:grid; grid-template-columns: 1fr 320px; gap: 20px; align-items:center; }
+.lede { color: var(--muted); margin: 6px 0 14px; max-width: 68ch; }
+.hero-ctas { display:flex; gap:10px; }
+
+/* visual card */
+.visual-card { height: 160px; border-radius: 12px; background: var(--card); border: 1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; box-shadow: 0 18px 50px rgba(2,6,12,0.6); }
+.visual-placeholder { color: var(--muted); font-weight:600; }
+
+/* sections */
+.section { padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.02); }
+.section h2 { margin: 0 0 10px; font-size: 20px; color: var(--text); }
+.muted { color: var(--muted); }
+
+/* curriculum grid */
+.curriculum-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 12px; }
+.curriculum-card { background: rgba(255,255,255,0.01); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); }
+
+/* subjects */
+.subjects-list { margin-top: 12px; padding-left: 1.1rem; color: var(--muted); line-height: 1.6; }
+
+/* assessment */
+.assessment-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
+.assessment-card { background: rgba(255,255,255,0.01); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); }
+
+/* enrichment clubs */
+.clubs-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
+.club { background: rgba(255,255,255,0.01); padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); text-align:center; }
+
+/* faculty */
+.faculty-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
+.faculty-card { display:flex; gap: 12px; align-items:center; background: rgba(255,255,255,0.01); padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); }
+.avatar { width:56px; height:56px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; display:inline-flex; align-items:center; justify-content:center; font-weight:700; }
+
+/* resources list */
+.resources-list { margin-top: 12px; padding-left: 1.1rem; }
+.resources-list a { color: var(--accent); text-decoration: none; }
+.resources-list a:hover { text-decoration: underline; }
+
+/* cta panel */
+.cta-panel { display:flex; align-items:center; justify-content:space-between; gap:12px; padding: 14px; border-radius: 10px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(255,255,255,0.02); margin-top: 12px; }
+
+/* responsive */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .curriculum-grid, .assessment-grid, .clubs-grid, .faculty-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 640px) {
+  .curriculum-grid, .assessment-grid, .clubs-grid, .faculty-grid { grid-template-columns: 1fr; }
+  .visual-card { height: 120px; }
+}
